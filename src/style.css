@@ -204,16 +204,19 @@ dialog{
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
 }
 dialog::backdrop{
     background-color: #f2f4f7be;
+}
+dialog:focus{
+    outline: none;
 }
 .modal{
     padding: 15px 20px;
     width: 600px;
     background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
 }
 .modal .title{
     display: flex;
@@ -241,4 +244,16 @@ dialog::backdrop{
 }
 .modal .title .close:hover{
     background-color: rgb(214, 214, 214);
+}
+.comment{
+    margin-top: 6px;
+    width: fit-content;
+    border-radius: 10px;
+    border: none;
+    padding: 6px;
+    background-color: rgb(230, 230, 230);
+}
+.comment .uname{
+    display: block;
+    font-weight: 600;
 }

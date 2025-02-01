@@ -1,24 +1,33 @@
 import { createRoot } from "react-dom/client";
-import { useState, useRef } from "react";
+import { useState} from "react";
 import "./style.css"
 let posts = [
     {
-        uname: "norri",
+        uname: "norri doorman",
         date: "12 jul 1979",
         content: "hello everyone! im finally back",
         likes: "2", shares: "8", comments: "1",
         comms: [
-            {}
+            {uname:"sirwan javadi",content:"welcome back norri!"},
+            {uname:"Solver",content:"norri ur dead"}
         ]
     },
     {
         uname: "S/D N",
         date: "13 jul 1979",
         content: "hi ma'am",
-        likes: "0", shares: "0", comments: "0"
+        likes: "0", shares: "0", comments: "0",
+        comms:[]
     }
 ]
-function Post({ username, date, likes, comments, shares, children }) {
+function showModal(){
+    document.querySelector("dialog").showModal()
+}
+function closeModal(){
+    document.querySelector("dialog").close()
+}
+let [view,setView] = []
+function Post({ username, date, likes, comments, shares, children,comc }) {
     return (
         <div className="card">
             <div className="top">
@@ -38,27 +47,40 @@ function Post({ username, date, likes, comments, shares, children }) {
             <div className="sep"></div>
             <div className="spb popt graycolor">
                 <div className="opt"><img src="src/icons/like.svg" alt="" />like</div>
-                <div className="opt"><img src="src/icons/comment.svg" alt="" />comment</div>
+                <div className="opt" onClick={comc}><img src="src/icons/comment.svg" alt="" />comment</div>
                 <div className="opt"><img src="src/icons/send.svg" alt="" />send</div>
                 <div className="opt"><img src="src/icons/share.svg" alt="" />share</div>
             </div>
         </div>
     )
 }
-function GetPosts() {
-    return posts.map((v, i) => <Post key={i} username={v.uname} date={v.date} likes={v.likes} comments={v.comments} shares={v.shares}>{v.content}</Post>)
-}
 function Home() {
-    let rf = useRef()
+    let [view,setView] = useState("default")
+    let [cid,setCid] = useState(0)
     return (
         <>
-            <dialog ref={rf}>
+            <dialog>
                 <div className="modal">
                     <div className="title">
-                        <span className="text">haha</span>
-                        <div className="close" onClick={()=>rf.current.close()}><img src="src/icons/close.svg" alt="" /></div>
+                        <span className="text">{view}</span>
+                        <div className="close" onClick={()=>closeModal()}><img src="src/icons/close.svg" alt="" /></div>
                     </div>
-                    <h1>sdsd</h1>
+                    {
+                        view == "comments" && posts[cid].comms.map((v,i)=>(
+                            <div key={i} className="comment">
+                                <span className="uname">{v.uname}</span>
+                                {v.content}
+                            </div>
+                        ))
+                    }
+                    <br />
+                    <input type="text" onKeyDown={(k)=>{
+                        if(k.key == "Enter"){
+                            posts[cid].comms.push({uname:"darkxwolf17",content:k.target.value})
+                            console.log(posts);
+                            
+                        }
+                    }} placeholder="post a comment" name="" id="" />
                 </div>
             </dialog>
             <div className="bl">
@@ -67,10 +89,14 @@ function Home() {
                 </div>
                 <div className="section">
                     <div className="card post">
-                        <input type="text" onClick={()=>rf.current.showModal()} placeholder="Whats on your mind, darkxwolf17" name="" id="" />
+                        <input type="text" onClick={()=>showModal()} placeholder="Whats on your mind, darkxwolf17" name="" id="" />
                     </div>
                     <div className="posts">
-                        <GetPosts />
+                        {posts.map((v, i) => <Post key={i} comc={()=>{
+                            setView("comments")
+                            setCid(i)
+                            showModal()
+                        }} username={v.uname} date={v.date} likes={v.likes} comments={v.comments} shares={v.shares} pid={i}>{v.content}</Post>)}
                     </div>
                 </div>
                 <div className="section">
@@ -87,7 +113,7 @@ function App() {
             <nav>
                 <div className="left section">
                     <span className="logo">ariasoft</span>
-                    <input className="search" placeholder="Search Facebook" type="text" name="" id="" />
+                    {/* <input className="search" placeholder="Search Facebook" type="text" name="" id="" /> */}
                 </div>
                 <div className="center section">
                     <div className="spb">
