@@ -1,25 +1,7 @@
 import { createRoot } from "react-dom/client";
 import { useState} from "react";
 import "./style.css"
-let posts = [
-    {
-        uname: "norri doorman",
-        date: "12 jul 1979",
-        content: "hello everyone! im finally back",
-        likes: "2", shares: "8", comments: "1",
-        comms: [
-            {uname:"sirwan javadi",content:"welcome back norri!"},
-            {uname:"Solver",content:"norri ur dead"}
-        ]
-    },
-    {
-        uname: "S/D N",
-        date: "13 jul 1979",
-        content: "hi ma'am",
-        likes: "0", shares: "0", comments: "0",
-        comms:[]
-    }
-]
+let db = await fetch("localhost:8080/api/rdb")
 function showModal(){
     document.querySelector("dialog").showModal()
 }
@@ -50,6 +32,35 @@ function Post({ username, date, likes, comments, shares, children,comc }) {
                 <div className="opt" onClick={comc}><img src="src/icons/comment.svg" alt="" />comment</div>
                 <div className="opt"><img src="src/icons/send.svg" alt="" />send</div>
                 <div className="opt"><img src="src/icons/share.svg" alt="" />share</div>
+            </div>
+        </div>
+    )
+}
+function getx(){
+    let x = location.href.split("/")
+    return x[x.length-1]
+}
+function Pager({id,children}){
+    for (let i = 0; i < children.length; i++) {
+        if(children[i].props.id == id){
+            return children[i]
+        }
+    }
+}
+function Page({children}){
+    return children
+}
+function Account(){
+    return (
+        <div className="accountpage">
+            <div className="banner"></div>
+            <img src="src/icons/user.png" alt="" className="accpfp" />
+            <div className="accinfo">
+                <span className="accname">darkxwolf17</span>
+                <div className="right">
+                <button>create a post</button>
+                <button>hello</button>
+                </div>
             </div>
         </div>
     )
@@ -107,7 +118,7 @@ function Home() {
     )
 }
 function App() {
-    let [tab, setTab] = useState("")
+    let [tab, setTab] = useState("home")
     return (
         <>
             <nav>
@@ -117,11 +128,11 @@ function App() {
                 </div>
                 <div className="center section">
                     <div className="spb">
-                        <div className="tab tab-active"><img src="src/icons/home.svg" alt="" /></div>
-                        <div className="tab"><img src="src/icons/friends.svg" alt="" /></div>
-                        <div className="tab"><img src="src/icons/video.svg" alt="" /></div>
-                        <div className="tab"><img src="src/icons/store.svg" alt="" /></div>
-                        <div className="tab"><img src="src/icons/groups.svg" alt="" /></div>
+                        <div className={"tab "+(tab == "home" && "tab-active")} onClick={()=>setTab("home")}><img src="src/icons/home.svg" alt="" /></div>
+                        <div className={"tab "+(tab == "account" && "tab-active")} onClick={()=>setTab("account")}><img src="src/icons/friends.svg" alt="" /></div>
+                        <div className={"tab "+(tab == "video" && "tab-active")}><img src="src/icons/video.svg" alt="" /></div>
+                        <div className={"tab "+(tab == "store" && "tab-active")}><img src="src/icons/store.svg" alt="" /></div>
+                        <div className={"tab "+(tab == "groups" && "tab-active")}><img src="src/icons/groups.svg" alt="" /></div>
                     </div>
                 </div>
                 <div className="right section">
@@ -134,7 +145,10 @@ function App() {
                 </div>
             </nav>
             <div className="body">
-                <Home />
+                <Pager id={tab}>
+                    <Page id="home"><Home/></Page>
+                    <Page id="account"><Account/></Page>
+                </Pager>
             </div>
         </>
     )

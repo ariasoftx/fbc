@@ -1,0 +1,19 @@
+[
+    {
+        "uname": "norri doorman",
+        "date": "12 jul 1979",
+        "content": "hello everyone! im finally back",
+        "likes": "2", "shares": "8", "comments": "1",
+        "comms": [
+            {"uname":"sirwan javadi","content":"welcome back norri!"},
+            {"uname":"Solver","content":"norri ur dead"}
+        ]
+    },
+    {
+        "uname": "S/D N",
+        "date": "13 jul 1979",
+        "content": "hi ma'am",
+        "likes": "0", "shares": "0", "comments": "0",
+        "comms":[]
+    }
+]

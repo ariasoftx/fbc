@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ariasoft x JAVTZ</title>
+    <style>
+        body{
+            background-color: rgb(245, 245, 245);
+        }
+        *{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .form{
+            background-color: white;
+            width: 500px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, .5);
+
+        }
+        .name{
+            width: 225px;
+            height: 25px;
+            border-radius: 7px;
+            border: 1px solid gray;
+            outline: none;
+            padding: 2px;
+        }
+        .label{
+            margin-right: 80%;
+            font-size: 17px;
+            color: gray;
+        }
+        select{
+            width: 30%;
+            height: 25px;
+            font-size: 18px;
+            border: 1px solid gray;
+            border-radius: 7px;
+        }
+        #email{
+            width: 90%;
+            height: 25px;
+            border: 1px solid gray;
+            border-radius: 7px;
+            outline: none;
+            font-size: 17px;
+        }
+        .btn{
+            width: 90%;
+            height: 40px;
+            border: 1px solid gray;
+            background-color: rgb(14, 190, 14);
+            border-radius: 7px;
+            color: white;
+            font-size: 20px;
+            transition: .5s;
+        }
+        .btn:hover{
+            opacity: .8;
+        }
+        .btn:active{
+            opacity: .5;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1 style="color: rgb(54, 108, 255);">Ariasoft x JAVTZ</h1>
+        <div class="form">
+            <br>
+            <form action="index.html" method="post">
+                <h1 style="margin-top: 0;">creat your acount </h1>
+                <p>it`s easy </p>
+                <hr><br>
+                <input class="name" type="text" placeholder="First name">
+                <input class="name" type="text" placeholder="Last name">
+                <br><br>
+                <label class="label">Birth Day</label>
+                <br><br>
+                <select id="Day">
+                    <option value="">فروردین</option>
+                    <option value="">اردیبهشت</option>
+                    <option value="">خرداد</option>
+                    <option value="">تیر</option>
+                    <option value="">مرداد</option>
+                    <option value="">شهریور</option>
+                    <option value="">مهر</option>
+                    <option value="">ابان</option>
+                    <option value="">آذر</option>
+                    <option value="">دی</option>
+                    <option value="">بهمن</option>
+                    <option value="">اسفند</option>
+                </select>
+                <select id="day">
+                    
+                </select>
+                <select id="year">
+                    
+                </select>
+                <br><br>
+                <label class="label">email</label>
+                <br><br>
+                <input type="email" id="email" placeholder="Enter your email">
+                <br><br>
+                <input class="btn" type="submit" value="Sign Up">
+                <br><br>
+            </form>
+        </div>
+    </center>
+    <script>
+        let day = document.querySelector("#day");
+        for (let i = 1; i <= 31; i++) {
+            day.innerHTML+=`<option value="${i}">${i}</option>`;
+        }
+        
+        let year = document.querySelector("#year");
+        for (let i = 1350; i <= 1403; i++) {
+            year.innerHTML+=`<option value="${i}">${i}</option>`;
+        }
+    </script>
+</body>
+</html>

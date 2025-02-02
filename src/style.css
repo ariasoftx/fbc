@@ -257,3 +257,50 @@ dialog:focus{
     display: block;
     font-weight: 600;
 }
+.accountpage{
+    padding: 0px 100px;
+}
+.accountpage .banner{
+    width: 100%;
+    height: 400px;
+    background: url("pics/darkxwolf17.jpg");
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+}
+.accountpage .accinfo{
+    transform: translateY(-190px);
+    display: flex;
+    align-items: center;
+
+}
+.accountpage .accpfp{
+    transform: translate(20%,-50%);
+    height: 180px;
+    width: 180px;
+    border-radius: 100%;
+    border: 7px #f2f4f7 solid;
+}
+.accountpage .accname{
+    transform: translateX(250px);
+    width: fit-content;
+    font-size: 32px;
+    font-weight: 600;
+}
+.accountpage .right{
+    position: absolute;
+    right: 0px;
+}
+button{
+    border: none;
+    border-radius: 6px;
+    padding: 8px 17px;
+    background-color: #0866ff;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 0px 3px;
+}
+button:hover{
+    background-color: #004fcf;
+}
